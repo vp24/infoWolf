@@ -1,0 +1,19 @@
+// {valuationData && (
+//             <ul>
+//               <li>Years: {valuationData.years.join(', ')}</li>
+//               <li>Currency Unit: <span dangerouslySetInnerHTML={{ __html: valuationData.currencyUnit }}></span></li>
+//               <li>Capitalization: {valuationData.capitalization.join(', ')}</li>
+//               <li>Enterprise Value (EV): {valuationData.enterpriseValue.join(', ')}</li>
+//               <li>P/E ratio: {valuationData.peRatio.join(', ')}</li>
+//               <li>Yield: {valuationData.yield.join(', ')}</li>
+//               <li>Capitalization / Revenue: {valuationData.capitalizationRevenue.join(', ')}</li>
+//               <li>EV / Revenue: {valuationData.evRevenue.join(', ')}</li>
+//               <li>EV / EBITDA: {valuationData.evEbitda.join(', ')}</li>
+//               <li>EV / FCF: {valuationData.evFcf.join(', ')}</li>
+//               <li>FCF Yield: {valuationData.fcfYield.join(', ')}</li>
+//               <li>Price to Book: {valuationData.priceToBook.join(', ')}</li>
+//               <li>Number of stocks (in thousands): {valuationData.numberOfStocks.join(', ')}</li>
+//               <li>Reference price: {valuationData.referencePrice.join(', ')}</li>
+//               <li>Announcement Date: {valuationData.announcementDate.join(', ')}</li>
+//             </ul>
+//           )}

@@ -9,21 +9,21 @@ function Register() {
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
-
+  
   const handleRegister = async (e) => {
     e.preventDefault();
-
+  
     try {
-        await axios.post('https://mktapi.onrender.com/register', { username, password });
-        navigate('/signin');
-      } catch (error) {
-        if (error.response && error.response.status === 409) {
-          setError(error.response.data.error);
-        } else {
-          setError('An error occurred. Please try again.');
-        }
+      await axios.post('https://mktapi.onrender.com/register', { username, password });
+      navigate('/signin');
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        setError(error.response.data.error);
+      } else {
+        setError('An error occurred. Please try again.');
       }
-    };
+    }
+  };
 
   return (
     <div className="register-container">

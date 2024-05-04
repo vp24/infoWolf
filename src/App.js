@@ -26,11 +26,11 @@ function App() {
 
   const handleSearch = async () => {
     if (ticker.trim() === '') return;
-
+  
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:3000/search?ticker=${ticker}`, {
+      const response = await axios.get(`https://mktapi.onrender.com/search?ticker=${ticker}`, {
         headers: {
           Authorization: token,
         },

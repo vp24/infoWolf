@@ -61,28 +61,15 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
+  .market-cap-container {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
   .section-title {
     font-size: 24px;
     margin-bottom: 10px;
     color: #333;
-  }
-  
-  .market-cap {
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #4caf50;
-  }
-  
-  .currency-unit {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 20px;
-  }
-
-.market-cap-container {
-    text-align: center;
-    margin-bottom: 30px;
   }
   
   .market-cap {
@@ -96,8 +83,8 @@
     font-size: 16px;
     color: #666;
   }
-
-.scraped-link-container {
+  
+  .scraped-link-container {
     margin-bottom: 20px;
   }
   
@@ -113,4 +100,29 @@
   
   .scraped-link-container a:hover {
     text-decoration: underline;
+  }
+
+
+  .sign-out-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: auto;
+  }
+  
+  .sign-out-button:hover {
+    background-color: #d32f2f;
+  }
+  
+  .auth-message {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 50px;
   }

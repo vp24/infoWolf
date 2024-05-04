@@ -8,6 +8,7 @@ import SummaryTable from './tables/SummaryTable';
 import FinancialCharts from './FinancialCharts';
 import SignIn from './SignIn';
 import Register from './Register';
+import Header from './Header';
 import {
   extractValuationData,
   extractIncomeStatementData,
@@ -29,7 +30,7 @@ function App() {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`https://mktapi.onrender.com/search?ticker=${ticker}`, {
+      const response = await axios.get(`http://localhost:3000/search?ticker=${ticker}`, {
         headers: {
           Authorization: token,
         },
@@ -65,72 +66,72 @@ function App() {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/signin" element={<SignIn onSignIn={handleSignIn} />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/" element={
-          <div className="app">
-            <h1>InfoWolf</h1>
-            {isAuthenticated ? (
-              <>
-                <button className="sign-out-button" onClick={handleSignOut}>
-                  Sign Out
-                </button>
-                <div className="search-container">
-                  <input
-                    type="text"
-                    value={ticker}
-                    onChange={(e) => setTicker(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    placeholder="Enter stock ticker"
-                    className="search-input"
-                  />
-                  <button onClick={handleSearch} className="search-button" disabled={loading}>
-                    {loading ? 'Searching...' : 'Search'}
-                  </button>
-                </div>
-                {error && <p className="error-message">{error}</p>}
-                {scrapedData && (
-                  <div className="data-container">
-                    <div className="market-cap-container">
-                      <h2 className="section-title">Market Cap</h2>
-                      <h3 className="market-cap">{valuationData.capitalization[6]}</h3>
-                      <p className="currency-unit" dangerouslySetInnerHTML={{ __html: valuationData.currencyUnit }}></p>
-                    </div>
-                    <div className="scraped-link-container">
-                      <p>Scraped from: <a href={scrapedData.link} target="_blank" rel="noopener noreferrer">{scrapedData.link}</a></p>
-                    </div>
-                    <SummaryTable
-                      years={summaryData.years}
-                      sales={summaryData.sales}
-                      netIncome={summaryData.netIncome}
-                      netCashPosition={summaryData.netCashPosition}
-                      peRatio={summaryData.peRatio}
-                      yield={summaryData.yield}
-                      capitalization={summaryData.capitalization}
-                      evSales={summaryData.evSales}
+      <div className="app">
+        <Header isAuthenticated={isAuthenticated} handleSignOut={handleSignOut} />
+        <Routes>
+          <Route path="/signin" element={<SignIn onSignIn={handleSignIn} />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/"
+            element={
+              isAuthenticated ? (
+                <>
+                  <div className="search-container">
+                    <input
+                      type="text"
+                      value={ticker}
+                      onChange={(e) => setTicker(e.target.value)}
+                      onKeyPress={handleKeyPress}
+                      placeholder="Enter stock ticker"
+                      className="search-input"
                     />
-                    <FinancialCharts
-                      years={incomeStatementData.years}
-                      sales={incomeStatementData.netSales}
-                      netIncome={incomeStatementData.netIncome}
-                      netMargin={incomeStatementData.netMargin}
-                    />
-                    <ValuationTable valuationData={valuationData} />
-                    <IncomeStatementTable incomeStatementData={incomeStatementData} />
-                    <BalanceSheetTable balanceSheetData={balanceSheetData} />
+                    <button onClick={handleSearch} className="search-button" disabled={loading}>
+                      {loading ? 'Searching...' : 'Search'}
+                    </button>
                   </div>
-                )}
-              </>
-            ) : (
-              <div className="auth-container">
-                <p className="auth-message">Please sign in to access the application.</p>
-                <Link to="/signin" className="sign-in-link">Sign In</Link>
-              </div>
-            )}
-          </div>
-        } />
-      </Routes>
+                  {error && <p className="error-message">{error}</p>}
+                  {scrapedData && (
+                    <div className="data-container">
+                      <div className="market-cap-container">
+                        <h2 className="section-title">Market Cap</h2>
+                        <h3 className="market-cap">{valuationData.capitalization[6]}</h3>
+                        <p className="currency-unit" dangerouslySetInnerHTML={{ __html: valuationData.currencyUnit }}></p>
+                      </div>
+                      <div className="scraped-link-container">
+                        <p>Scraped from: <a href={scrapedData.link} target="_blank" rel="noopener noreferrer">{scrapedData.link}</a></p>
+                      </div>
+                      <SummaryTable
+                        years={summaryData.years}
+                        sales={summaryData.sales}
+                        netIncome={summaryData.netIncome}
+                        netCashPosition={summaryData.netCashPosition}
+                        peRatio={summaryData.peRatio}
+                        yield={summaryData.yield}
+                        capitalization={summaryData.capitalization}
+                        evSales={summaryData.evSales}
+                      />
+                      <FinancialCharts
+                        years={incomeStatementData.years}
+                        sales={incomeStatementData.netSales}
+                        netIncome={incomeStatementData.netIncome}
+                        netMargin={incomeStatementData.netMargin}
+                      />
+                      <ValuationTable valuationData={valuationData} />
+                      <IncomeStatementTable incomeStatementData={incomeStatementData} />
+                      <BalanceSheetTable balanceSheetData={balanceSheetData} />
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="auth-container">
+                  <p className="auth-message">Please sign in to access the application.</p>
+                  <Link to="/signin" className="sign-in-link">Sign In</Link>
+                </div>
+              )
+            }
+          />
+        </Routes>
+      </div>
     </Router>
   );
 }

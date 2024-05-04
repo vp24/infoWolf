@@ -90,16 +90,6 @@ const FinancialCharts = ({ years, sales, netIncome, netMargin }) => {
 
   return (
     <div>
-      <h3>Input Data:</h3>
-      <pre>
-        Years: {JSON.stringify(years, null, 2)}
-        <br />
-        Sales: {JSON.stringify(sales, null, 2)}
-        <br />
-        Net Income: {JSON.stringify(netIncome, null, 2)}
-        <br />
-        Net Margin: {JSON.stringify(netMargin, null, 2)}
-      </pre>
       <Bar data={data} options={options} />
     </div>
   );

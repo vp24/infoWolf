@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Header.css';
 
 const Header = ({ isAuthenticated, handleSignOut }) => {
   const token = localStorage.getItem('token');
@@ -15,7 +16,9 @@ const Header = ({ isAuthenticated, handleSignOut }) => {
             <>
               <li>Welcome, {token ? 'User' : 'Guest'}</li>
               <li>
-                <button onClick={handleSignOut}>Sign Out</button>
+                <button className="sign-out-button" onClick={handleSignOut}>
+                  Sign Out
+                </button>
               </li>
             </>
           )}

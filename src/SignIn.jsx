@@ -15,8 +15,9 @@ function SignIn({ onSignIn }) {
   
     try {
       const response = await axios.post('https://mktapi.onrender.com/login', { username, password });
-      const { token } = response.data;
+      const { token, username: loggedInUsername } = response.data;
       localStorage.setItem('token', token);
+      localStorage.setItem('username', loggedInUsername);
       console.log('Sign-in response:', response.data);
       onSignIn();
       navigate('/');

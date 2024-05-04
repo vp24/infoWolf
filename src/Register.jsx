@@ -14,7 +14,7 @@ function Register() {
     e.preventDefault();
 
     try {
-        await axios.post('http://localhost:3000/register', { username, password });
+        await axios.post('https://mktapi.onrender.com/register', { username, password });
         navigate('/signin');
       } catch (error) {
         if (error.response && error.response.status === 409) {

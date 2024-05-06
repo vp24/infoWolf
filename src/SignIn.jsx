@@ -1,6 +1,7 @@
+// SignIn.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './SignIn.css';
 
 function SignIn({ onSignIn }) {
@@ -12,19 +13,30 @@ function SignIn({ onSignIn }) {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-  
+    const requestData = { username, password };
+    console.log('Request data:', requestData); // Log the request data
+
     try {
+      console.log('Sending login request with:', { username, password });
       const response = await axios.post('https://mktapi.onrender.com/login', { username, password });
-      const { token, username: loggedInUsername } = response.data;
+      console.log('Login response:', response.data);
+      const { token } = response.data;
       localStorage.setItem('token', token);
-      localStorage.setItem('username', loggedInUsername);
-      console.log('Sign-in response:', response.data);
+      localStorage.setItem('username', username);
       onSignIn();
       navigate('/');
     } catch (error) {
-      setError(error.response.data.error);
+      console.error('Login error:', error);
+      if (error.response) {
+        console.log('Error response:', error.response); // Log the entire response object
+        console.log('Error response data:', error.response.data);
+        setError(error.response.data.error || 'Invalid username or password. Please try again.');
+      } else {
+        setError('An error occurred. Please try again.');
+      }
     }
   };
+
 
   return (
     <div className="sign-in-container">
@@ -53,6 +65,9 @@ function SignIn({ onSignIn }) {
         </div>
         <button type="submit">Sign In</button>
       </form>
+      <p className="register-link">
+        Don't have an account? <Link to="/register">Register</Link>
+      </p>
     </div>
   );
 }

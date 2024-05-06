@@ -15,16 +15,25 @@ function SignIn({ onSignIn }) {
     e.preventDefault();
 
     try {
+      console.log('Sending login request with:', { username, password });
       const response = await axios.post('https://mktapi.onrender.com/login', { username, password });
+      console.log('Login response:', response.data);
       const { token } = response.data;
       localStorage.setItem('token', token);
       localStorage.setItem('username', username);
       onSignIn();
       navigate('/');
     } catch (error) {
-      setError('Invalid username or password. Please try again.');
+      console.error('Login error:', error);
+      if (error.response) {
+        console.log('Error response data:', error.response.data);
+        setError(error.response.data.error || 'Invalid username or password. Please try again.');
+      } else {
+        setError('An error occurred. Please try again.');
+      }
     }
   };
+
 
   return (
     <div className="sign-in-container">

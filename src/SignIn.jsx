@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './SignIn.css';
 
 function SignIn({ onSignIn }) {
@@ -12,7 +12,7 @@ function SignIn({ onSignIn }) {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-  
+
     try {
       const response = await axios.post('https://mktapi.onrender.com/login', { username, password });
       const { token, username: loggedInUsername } = response.data;
@@ -53,6 +53,9 @@ function SignIn({ onSignIn }) {
         </div>
         <button type="submit">Sign In</button>
       </form>
+      <p className="register-link">
+        Don't have an account? <Link to="/register">Register</Link>
+      </p>
     </div>
   );
 }

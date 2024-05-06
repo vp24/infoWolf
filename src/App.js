@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import ValuationTable from './tables/ValuationTable';
 import IncomeStatementTable from './tables/IncomeStatementTable';
@@ -24,9 +24,14 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsAuthenticated(!!token);
+  }, []);
+
   const handleSearch = async () => {
     if (ticker.trim() === '') return;
-  
+
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
@@ -56,6 +61,7 @@ function App() {
 
   const handleSignOut = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
     setIsAuthenticated(false);
   };
 
@@ -123,10 +129,7 @@ function App() {
                   )}
                 </>
               ) : (
-                <div className="auth-container">
-                  <p className="auth-message">Please sign in to access the application.</p>
-                  <Link to="/signin" className="sign-in-link">Sign In</Link>
-                </div>
+                <Navigate to="/signin" replace />
               )
             }
           />

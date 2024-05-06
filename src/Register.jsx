@@ -38,8 +38,10 @@ function Register() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            key="username"
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="password">Password:</label>
           <input
@@ -48,6 +50,7 @@ function Register() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            key="password"
           />
         </div>
         <button type="submit">Register</button>

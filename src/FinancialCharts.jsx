@@ -2,8 +2,6 @@ import React from 'react';
 import { Chart } from 'chart.js/auto';
 import { Bar } from 'react-chartjs-2';
 
-// Chart.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
-
 const FinancialCharts = ({ years, sales, netIncome, netMargin }) => {
   // Extract values from sales, netIncome, and netMargin arrays
   const salesValues = sales.slice(1).map(value => parseInt(value.replace(/,/g, '')));

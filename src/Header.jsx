@@ -1,3 +1,4 @@
+// Header.jsx
 import React from 'react';
 import './Header.css';
 
@@ -10,8 +11,8 @@ const Header = ({ isAuthenticated, handleSignOut }) => {
         <ul>
           {isAuthenticated && (
             <>
-              <li>Welcome, {username}</li>
-              <li>
+              <li key="welcome">Welcome, {username}</li>
+              <li key="signOut">
                 <button className="sign-out-button" onClick={handleSignOut}>
                   Sign Out
                 </button>

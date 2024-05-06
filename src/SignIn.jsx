@@ -13,6 +13,8 @@ function SignIn({ onSignIn }) {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
+    const requestData = { username, password };
+    console.log('Request data:', requestData); // Log the request data
 
     try {
       console.log('Sending login request with:', { username, password });
@@ -26,6 +28,7 @@ function SignIn({ onSignIn }) {
     } catch (error) {
       console.error('Login error:', error);
       if (error.response) {
+        console.log('Error response:', error.response); // Log the entire response object
         console.log('Error response data:', error.response.data);
         setError(error.response.data.error || 'Invalid username or password. Please try again.');
       } else {

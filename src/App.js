@@ -28,6 +28,8 @@ function App() {
     if (ticker.trim() === '') return;
 
     setLoading(true);
+    setError(null);
+
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(`https://mktapi.onrender.com/search?ticker=${ticker}`, {
@@ -36,10 +38,21 @@ function App() {
         },
       });
       setScrapedData(response.data);
-      setError(null);
     } catch (error) {
-      setScrapedData(null);
-      setError(error.response.data);
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.error('Error response data:', error.response.data);
+        setError(error.response.data.error.message || 'An error occurred');
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error('No response received:', error.request);
+        setError('No response received from the server');
+      } else {
+        // Something happened in setting up the request that triggered an error
+        console.error('Error:', error.message);
+        setError(error.message || 'An error occurred');
+      }
     }
     setLoading(false);
   };

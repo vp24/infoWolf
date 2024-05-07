@@ -104,36 +104,39 @@ function App() {
                   </div>
                   {error && <p className="error-message">{error}</p>}
                   {scrapedData && (
-                    <div className="data-container">
-                      <div className="market-cap-container">
-                        <h2 className="section-title">Market Cap</h2>
-                        <h3 className="market-cap">{valuationData.capitalization[6]}</h3>
-                        <p className="currency-unit" dangerouslySetInnerHTML={{ __html: valuationData.currencyUnit }}></p>
-                      </div>
-                      <div className="scraped-link-container">
-                        <p>Scraped from: <a href={scrapedData.link} target="_blank" rel="noopener noreferrer">{scrapedData.link}</a></p>
-                      </div>
-                      <SummaryTable
-                        years={summaryData.years}
-                        sales={summaryData.sales}
-                        netIncome={summaryData.netIncome}
-                        netCashPosition={summaryData.netCashPosition}
-                        peRatio={summaryData.peRatio}
-                        yield={summaryData.yield}
-                        capitalization={summaryData.capitalization}
-                        evSales={summaryData.evSales}
-                      />
-                      <FinancialCharts
-                        years={incomeStatementData.years}
-                        sales={incomeStatementData.netSales}
-                        netIncome={incomeStatementData.netIncome}
-                        netMargin={incomeStatementData.netMargin}
-                      />
-                      <ValuationTable valuationData={valuationData} />
-                      <IncomeStatementTable incomeStatementData={incomeStatementData} />
-                      <BalanceSheetTable balanceSheetData={balanceSheetData} />
-                    </div>
-                  )}
+  <div className="data-container">
+    <div className="market-cap-container">
+      <h2 className="section-title">Market Cap<sup>1, 2</sup></h2>
+      <h3 className="market-cap">{valuationData.capitalization[6]}</h3>
+      <p className="currency-unit" dangerouslySetInnerHTML={{ __html: valuationData.currencyUnit }}></p>
+    </div>
+    <div className="scraped-link-container">
+      <p>Link: <a href={scrapedData.link} target="_blank" rel="noopener noreferrer">{scrapedData.link}</a></p>
+    </div>
+    <SummaryTable
+      years={summaryData.years}
+      sales={summaryData.sales}
+      netIncome={summaryData.netIncome}
+      netCashPosition={summaryData.netCashPosition}
+      peRatio={summaryData.peRatio}
+      yield={summaryData.yield}
+      capitalization={summaryData.capitalization}
+      evSales={summaryData.evSales}
+    />
+    <FinancialCharts
+      years={incomeStatementData.years}
+      sales={incomeStatementData.netSales}
+      netIncome={incomeStatementData.netIncome}
+      netMargin={incomeStatementData.netMargin}
+    />
+    <ValuationTable valuationData={valuationData} />
+    <IncomeStatementTable incomeStatementData={incomeStatementData} />
+    <BalanceSheetTable balanceSheetData={balanceSheetData} />
+  </div>
+)}
+
+       
+             
                 </>
               ) : (
                 <div className="auth-container">

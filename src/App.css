@@ -138,3 +138,31 @@ h1 {
 .sign-in-link:hover {
   text-decoration: underline;
 }
+
+.market-cap-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #4a4a4a;
+}
+
+.section-title sup {
+  font-size: 12px;
+  vertical-align: super;
+}
+
+.market-cap {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #2c3e50;
+}
+
+.currency-unit {
+  font-size: 14px;
+  color: #7f8c8d;
+}

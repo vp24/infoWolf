@@ -1,11 +1,19 @@
 import React from 'react';
 import './tables.css';
 
-
 const ValuationTable = ({ valuationData }) => {
   if (!valuationData) {
     return null;
   }
+
+  const superscriptLabel = (label) => {
+    const parts = label.split(' ');
+    const lastPart = parts[parts.length - 1];
+    if (/^\d+$/.test(lastPart)) {
+      parts[parts.length - 1] = <sup>{lastPart}</sup>;
+    }
+    return <td>{parts}</td>;
+  };
 
   return (
     <div>
@@ -20,67 +28,80 @@ const ValuationTable = ({ valuationData }) => {
         </thead>
         <tbody>
           <tr>
-            {valuationData.capitalization.map((value, index) => (
+            {superscriptLabel(valuationData.capitalization[0])}
+            {valuationData.capitalization.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {valuationData.enterpriseValue.map((value, index) => (
+            {superscriptLabel(valuationData.enterpriseValue[0])}
+            {valuationData.enterpriseValue.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {valuationData.peRatio.map((value, index) => (
+            {superscriptLabel(valuationData.peRatio[0])}
+            {valuationData.peRatio.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {valuationData.yield.map((value, index) => (
+            {superscriptLabel(valuationData.yield[0])}
+            {valuationData.yield.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {valuationData.capitalizationRevenue.map((value, index) => (
+            {superscriptLabel(valuationData.capitalizationRevenue[0])}
+            {valuationData.capitalizationRevenue.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {valuationData.evRevenue.map((value, index) => (
+            {superscriptLabel(valuationData.evRevenue[0])}
+            {valuationData.evRevenue.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {valuationData.evEbitda.map((value, index) => (
+            {superscriptLabel(valuationData.evEbitda[0])}
+            {valuationData.evEbitda.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {valuationData.evFcf.map((value, index) => (
+            {superscriptLabel(valuationData.evFcf[0])}
+            {valuationData.evFcf.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {valuationData.fcfYield.map((value, index) => (
+            {superscriptLabel(valuationData.fcfYield[0])}
+            {valuationData.fcfYield.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {valuationData.priceToBook.map((value, index) => (
+            {superscriptLabel(valuationData.priceToBook[0])}
+            {valuationData.priceToBook.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {valuationData.numberOfStocks.map((value, index) => (
+            {superscriptLabel(valuationData.numberOfStocks[0])}
+            {valuationData.numberOfStocks.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {valuationData.referencePrice.map((value, index) => (
+            {superscriptLabel(valuationData.referencePrice[0])}
+            {valuationData.referencePrice.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {valuationData.announcementDate.map((value, index) => (
+            {superscriptLabel(valuationData.announcementDate[0])}
+            {valuationData.announcementDate.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>

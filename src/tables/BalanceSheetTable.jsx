@@ -1,11 +1,19 @@
 import React from 'react';
 import './tables.css';
 
-
 const BalanceSheetTable = ({ balanceSheetData }) => {
   if (!balanceSheetData) {
     return null;
   }
+
+  const superscriptLabel = (label) => {
+    const parts = label.split(' ');
+    const lastPart = parts[parts.length - 1];
+    if (/^\d+$/.test(lastPart)) {
+      parts[parts.length - 1] = <sup>{lastPart}</sup>;
+    }
+    return <td>{parts}</td>;
+  };
 
   return (
     <div>
@@ -20,62 +28,74 @@ const BalanceSheetTable = ({ balanceSheetData }) => {
         </thead>
         <tbody>
           <tr>
-            {balanceSheetData.netDebt.map((value, index) => (
+            {superscriptLabel(balanceSheetData.netDebt[0])}
+            {balanceSheetData.netDebt.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {balanceSheetData.netCashPosition.map((value, index) => (
+            {superscriptLabel(balanceSheetData.netCashPosition[0])}
+            {balanceSheetData.netCashPosition.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {balanceSheetData.leverageDebtEBITDA.map((value, index) => (
+            {superscriptLabel(balanceSheetData.leverageDebtEBITDA[0])}
+            {balanceSheetData.leverageDebtEBITDA.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {balanceSheetData.freeCashFlow.map((value, index) => (
+            {superscriptLabel(balanceSheetData.freeCashFlow[0])}
+            {balanceSheetData.freeCashFlow.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {balanceSheetData.ROE.map((value, index) => (
+            {superscriptLabel(balanceSheetData.ROE[0])}
+            {balanceSheetData.ROE.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {balanceSheetData.ROA.map((value, index) => (
+            {superscriptLabel(balanceSheetData.ROA[0])}
+            {balanceSheetData.ROA.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {balanceSheetData.assets.map((value, index) => (
+            {superscriptLabel(balanceSheetData.assets[0])}
+            {balanceSheetData.assets.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {balanceSheetData.bookValuePerShare.map((value, index) => (
+            {superscriptLabel(balanceSheetData.bookValuePerShare[0])}
+            {balanceSheetData.bookValuePerShare.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {balanceSheetData.cashFlowPerShare.map((value, index) => (
+            {superscriptLabel(balanceSheetData.cashFlowPerShare[0])}
+            {balanceSheetData.cashFlowPerShare.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {balanceSheetData.capex.map((value, index) => (
+            {superscriptLabel(balanceSheetData.capex[0])}
+            {balanceSheetData.capex.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {balanceSheetData.capexSales.map((value, index) => (
+            {superscriptLabel(balanceSheetData.capexSales[0])}
+            {balanceSheetData.capexSales.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {balanceSheetData.announcementDate.map((value, index) => (
+            {superscriptLabel(balanceSheetData.announcementDate[0])}
+            {balanceSheetData.announcementDate.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>

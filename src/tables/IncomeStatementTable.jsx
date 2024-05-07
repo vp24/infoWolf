@@ -1,11 +1,19 @@
 import React from 'react';
 import './tables.css';
 
-
 const IncomeStatementTable = ({ incomeStatementData }) => {
   if (!incomeStatementData) {
     return null;
   }
+
+  const superscriptLabel = (label) => {
+    const parts = label.split(' ');
+    const lastPart = parts[parts.length - 1];
+    if (/^\d+$/.test(lastPart)) {
+      parts[parts.length - 1] = <sup>{lastPart}</sup>;
+    }
+    return <td>{parts}</td>;
+  };
 
   return (
     <div>
@@ -20,72 +28,86 @@ const IncomeStatementTable = ({ incomeStatementData }) => {
         </thead>
         <tbody>
           <tr>
-            {incomeStatementData.netSales.map((value, index) => (
+            {superscriptLabel(incomeStatementData.netSales[0])}
+            {incomeStatementData.netSales.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {incomeStatementData.ebitda.map((value, index) => (
+            {superscriptLabel(incomeStatementData.ebitda[0])}
+            {incomeStatementData.ebitda.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {incomeStatementData.ebit.map((value, index) => (
+            {superscriptLabel(incomeStatementData.ebit[0])}
+            {incomeStatementData.ebit.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {incomeStatementData.operatingMargin.map((value, index) => (
+            {superscriptLabel(incomeStatementData.operatingMargin[0])}
+            {incomeStatementData.operatingMargin.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {incomeStatementData.earningsBeforeTax.map((value, index) => (
+            {superscriptLabel(incomeStatementData.earningsBeforeTax[0])}
+            {incomeStatementData.earningsBeforeTax.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {incomeStatementData.netIncome.map((value, index) => (
+            {superscriptLabel(incomeStatementData.netIncome[0])}
+            {incomeStatementData.netIncome.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {incomeStatementData.netMargin.map((value, index) => (
+            {superscriptLabel(incomeStatementData.netMargin[0])}
+            {incomeStatementData.netMargin.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {incomeStatementData.eps.map((value, index) => (
+            {superscriptLabel(incomeStatementData.eps[0])}
+            {incomeStatementData.eps.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {incomeStatementData.freeCashFlow.map((value, index) => (
+            {superscriptLabel(incomeStatementData.freeCashFlow[0])}
+            {incomeStatementData.freeCashFlow.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {incomeStatementData.fcfMargin.map((value, index) => (
+            {superscriptLabel(incomeStatementData.fcfMargin[0])}
+            {incomeStatementData.fcfMargin.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {incomeStatementData.fcfConversionEbitda.map((value, index) => (
+            {superscriptLabel(incomeStatementData.fcfConversionEbitda[0])}
+            {incomeStatementData.fcfConversionEbitda.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {incomeStatementData.fcfConversionNetIncome.map((value, index) => (
+            {superscriptLabel(incomeStatementData.fcfConversionNetIncome[0])}
+            {incomeStatementData.fcfConversionNetIncome.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {incomeStatementData.dividendPerShare.map((value, index) => (
+            {superscriptLabel(incomeStatementData.dividendPerShare[0])}
+            {incomeStatementData.dividendPerShare.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            {incomeStatementData.announcementDate.map((value, index) => (
+            {superscriptLabel(incomeStatementData.announcementDate[0])}
+            {incomeStatementData.announcementDate.slice(1).map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>

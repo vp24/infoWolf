@@ -2,6 +2,15 @@ import React from 'react';
 import './tables.css';
 
 const SummaryTable = ({ years, sales, netIncome, netCashPosition, peRatio, yield: yield_, capitalization, evSales }) => {
+  const superscriptLabel = (label) => {
+    const parts = label.split(' ');
+    const lastPart = parts[parts.length - 1];
+    if (/^\d+$/.test(lastPart)) {
+      parts[parts.length - 1] = <sup>{lastPart}</sup>;
+    }
+    return <td>{parts}</td>;
+  };
+
   return (
     <div>
       <h3>Summary</h3>
@@ -16,43 +25,43 @@ const SummaryTable = ({ years, sales, netIncome, netCashPosition, peRatio, yield
         </thead>
         <tbody>
           <tr>
-            <td>{sales.label}</td>
+            {superscriptLabel(sales.label)}
             {sales.values.map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            <td>{netIncome.label}</td>
+            {superscriptLabel(netIncome.label)}
             {netIncome.values.map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            <td>{netCashPosition.label}</td>
+            {superscriptLabel(netCashPosition.label)}
             {netCashPosition.values.map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            <td>{peRatio.label}</td>
+            {superscriptLabel(peRatio.label)}
             {peRatio.values.map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            <td>{yield_.label}</td>
+            {superscriptLabel(yield_.label)}
             {yield_.values.map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            <td>{capitalization.label}</td>
+            {superscriptLabel(capitalization.label)}
             {capitalization.values.map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>
           <tr>
-            <td>{evSales.label}</td>
+            {superscriptLabel(evSales.label)}
             {evSales.values.map((value, index) => (
               <td key={index}>{value}</td>
             ))}

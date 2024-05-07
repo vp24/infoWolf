@@ -7,10 +7,10 @@ const IncomeStatementTable = ({ incomeStatementData }) => {
   }
 
   const superscriptLabel = (label) => {
-    const parts = label.split(' ');
-    const lastPart = parts[parts.length - 1];
-    if (/^\d+$/.test(lastPart)) {
-      parts[parts.length - 1] = <sup>{lastPart}</sup>;
+    const parts = label.split(/(\s\d+)/);
+    if (parts.length > 1) {
+      parts[parts.length - 2] = parts[parts.length - 2].trim();
+      parts[parts.length - 2] = <sup>{parts[parts.length - 2]}</sup>;
     }
     return <td>{parts}</td>;
   };

@@ -1,7 +1,7 @@
 import React from 'react';
 import './tables.css';
 
-const SummaryTable = ({ years, sales, netIncome, netCashPosition, peRatio, yield: yield_, capitalization, evSales }) => {
+const SummaryTable = ({ years, sales, netIncome, netCashPosition, netDebt, peRatio, yield: yield_, capitalization, evSales }) => {
 
   const superscriptLabel = (label) => {
     const parts = label.split(/(\s\d+)/);
@@ -40,6 +40,12 @@ const SummaryTable = ({ years, sales, netIncome, netCashPosition, peRatio, yield
           <tr>
             {superscriptLabel(netCashPosition.label)}
             {netCashPosition.values.map((value, index) => (
+              <td key={index}>{value}</td>
+            ))}
+          </tr>
+          <tr>
+            {superscriptLabel(netDebt.label)}
+            {netDebt.values.map((value, index) => (
               <td key={index}>{value}</td>
             ))}
           </tr>

@@ -18,15 +18,10 @@ export const extractValuationData = (scrapedData) => {
     return Array.from(cells).map(cell => cell.textContent.trim());
   });
 
-  let capitalization = data[0];
-  if (capitalization[0].includes('Capitalization')) {
-    capitalization[0] = 'Mkt Cap';
-  }
-
   return {
     years,
     currencyUnit,
-    capitalization,
+    capitalization: data[0],
     enterpriseValue: data[1],
     peRatio: data[2],
     yield: data[3],
@@ -138,10 +133,6 @@ export const extractSummaryData = (incomeStatementData, balanceSheetData, valuat
     label: balanceSheetData.netCashPosition[0],
     values: balanceSheetData.netCashPosition.slice(-3),
   };
-  const netDebt = {
-    label: balanceSheetData.netDebt[0],
-    values: balanceSheetData.netDebt.slice(-3),
-  };
   const peRatio = {
     label: valuationData.peRatio[0],
     values: valuationData.peRatio.slice(-3),
@@ -150,15 +141,10 @@ export const extractSummaryData = (incomeStatementData, balanceSheetData, valuat
     label: valuationData.yield[0],
     values: valuationData.yield.slice(-3),
   };
-  let capitalization = {
+  const capitalization = {
     label: valuationData.capitalization[0],
     values: valuationData.capitalization.slice(-3),
   };
-
-  if (capitalization.label.includes('Capitalization')) {
-    capitalization.label = 'Mkt Cap';
-  }
-
   const evSales = {
     label: valuationData.evRevenue[0],
     values: valuationData.evRevenue.slice(-3),
@@ -169,7 +155,6 @@ export const extractSummaryData = (incomeStatementData, balanceSheetData, valuat
     sales,
     netIncome,
     netCashPosition,
-    netDebt,
     peRatio,
     yield: yield_,
     capitalization,

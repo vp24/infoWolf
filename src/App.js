@@ -116,6 +116,7 @@ function App() {
     <SummaryTable
       years={summaryData.years}
       sales={summaryData.sales}
+      netDebt={summaryData.netDebt}
       netIncome={summaryData.netIncome}
       netCashPosition={summaryData.netCashPosition}
       peRatio={summaryData.peRatio}
